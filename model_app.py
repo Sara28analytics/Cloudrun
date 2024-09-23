@@ -16,6 +16,7 @@ class Input(BaseModel):
 
 class Output(BaseModel):
     SalesInMillions: float
+    Status: str
 
 #uvicorn model_app:app --reload 
 @app.post("/predict")
@@ -28,7 +29,7 @@ def predict(data:Input) -> Output:
     prediction = model.predict(X_input)
 
     #output
-    return Output(SalesInMillions=prediction)
+    return Output(SalesInMillions=prediction,status = "Hurray! You have made it")
 
 #go to the terminal and run the below command
 # uvicorn model_app:app --reload
